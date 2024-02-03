@@ -41,6 +41,11 @@ pipeline {
                 """
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
         stage('Build') {
             steps {
                 sh """
@@ -48,34 +53,33 @@ pipeline {
                 """
             }
         }
-        stage('Publish Artifact') {
-            steps {
-                 nexusArtifactUploader(
-                    nexusVersion: 'nexus3',
-                    protocol: 'http',
-                    nexusUrl: "${nexusURL}",
-                    groupId: 'com.roboshop',
-                    version: "${packageVersion}",
-                    repository: 'catalogue',
-                    credentialsId: 'nexus-auth',
-                    artifacts: [
-                        [artifactId: 'catalogue',
-                        classifier: '',
-                        file: 'catalogue.zip',
-                        type: 'zip']
-                    ]
-                )
-            }
-        }
+        // stage('Publish Artifact') {
+        //     steps {
+        //          nexusArtifactUploader(
+        //             nexusVersion: 'nexus3',
+        //             protocol: 'http',
+        //             nexusUrl: "${nexusURL}",
+        //             groupId: 'com.roboshop',
+        //             version: "${packageVersion}",
+        //             repository: 'catalogue',
+        //             credentialsId: 'nexus-auth',
+        //             artifacts: [
+        //                 [artifactId: 'catalogue',
+        //                 classifier: '',
+        //                 file: 'catalogue.zip',
+        //                 type: 'zip']
+        //             ]
+        //         )
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
-                script {
-                        sh """
-                            echo "Here I worte shell"
-                            #slepp 10
-                        """
-                    }
+                sh """
+                    echo "Here I worte shell"
+                    #slepp 10
+                """
+                    
             }
         }
     }

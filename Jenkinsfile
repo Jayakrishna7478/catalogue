@@ -74,11 +74,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh """
-                    echo "Here I worte shell"
-                    #slepp 10
-                """
-                    
+                build job: "catalogue-deploy", wait: true, parameters:[
+                    string(name: 'version',value: "${packageVersion}")
+                    string(name: 'environment',value:'dev')
+                ]       
             }
         }
     }

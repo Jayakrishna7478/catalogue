@@ -41,13 +41,13 @@ pipeline {
                 """
             }
         }
-        stage('Unit tests') {
-            steps {
-                sh """
-                    echo "unit tests will run here"
-                """
-            }
-        }
+        // stage('Unit tests') {
+        //     steps {
+        //         sh """
+        //             echo "unit tests will run here"
+        //         """
+        //     }
+        // }
         // stage('Sonar Scan'){
         //     steps{
         //         sh """
